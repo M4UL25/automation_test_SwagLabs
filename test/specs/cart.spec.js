@@ -19,9 +19,11 @@ describe("CART", () => {
         await expect(browser).toHaveUrl("https://www.saucedemo.com/inventory.html")
     })
 
-    it.skip("Menghapus barang pada keranjang", async () => {
-        const btnRemoveCart = $("button#remove-sauce-labs-backpack")
-        await btnRemoveCart.click()
+    it("Menghapus barang pada keranjang", async () => {
+        await expect(inventoryPage.badge).toExist()
+        await cartPage.btnRemoveCart.click()
+        
+        await expect(inventoryPage.badge).not.toExist()
     })
 
     it("Melanjukan untuk pembayaran", async () => {

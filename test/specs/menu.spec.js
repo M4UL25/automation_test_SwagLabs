@@ -28,14 +28,11 @@ describe("PAGE MENU", () => {
         await expect(browser).toHaveUrl("https://www.saucedemo.com/")
     })
 
-    it.skip("Mereset kembali halaman Utama", async () => {
-        const btnBurger = $("button#react-burger-menu-btn")
-        await btnBurger.click()
-
-        const btnReset = $("a#reset_sidebar_link")
-        await btnReset.click()
-
-        const badge = $(`span[data-test="shopping-cart-badge"]`)
-        await expect(badge).toBeDisabled()
+    it("Mereset kembali halaman Utama", async () => {
+        await inventoryPage.addCartOnDetail()
+        await expect(inventoryPage.badge).toExist()
+        
+        await inventoryPage.cekMenuReset()
+        await expect(inventoryPage.badge).not.toExist()
     })
 })

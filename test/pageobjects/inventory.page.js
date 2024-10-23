@@ -18,9 +18,10 @@ class InventoryPage {
     get btnBackProduct() {return $("button#back-to-products")}
     get btnAddToCart() {return $("button#add-to-cart")}
     get btnAddToCartHome() {return $("button#add-to-cart-sauce-labs-backpack")}
-    get bedge() {return $(`span[data-test="shopping-cart-badge"]`)}
+    get badge() {return $(`span[data-test="shopping-cart-badge"]`)}
     get btnCart() {return $(`a[data-test="shopping-cart-link"]`)}
-    get btnRemoveCart() {return $("button#remove-sauce-labs-backpack")}
+    get btnRemoveCart() {return $("button#remove")}
+    get btnRemoveCartHome() {return $("button#remove-sauce-labs-backpack")}
     get btnReset() {return $("a#reset_sidebar_link")}
 
     // page actions

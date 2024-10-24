@@ -1,5 +1,4 @@
 import {$, browser} from "@wdio/globals"
-import { isAscending, isDescending } from "../helper/sorting.js"
 
 class InventoryPage {
     // element lecators
@@ -10,6 +9,7 @@ class InventoryPage {
     get btnLinkedin() {return $(`a[data-test="social-linkedin"]`)}
     get nameAccountLinkedin() {return $("h1=Sauce Labs")}
     get allProductElementName() {return $$(`div[data-test="inventory-item-name"]`)}
+    get allPriceElementPrice() {return $$(`div[data-test="inventory-item-price"]`)}
     get btnBurger() {return $("button#react-burger-menu-btn")}
     get btnAllItems() {return $("a#inventory_sidebar_link")}
     get btnAbout() {return $("a#about_sidebar_link")}
@@ -18,6 +18,10 @@ class InventoryPage {
     get btnBackProduct() {return $("button#back-to-products")}
     get btnAddToCart() {return $("button#add-to-cart")}
     get btnAddToCartHome() {return $("button#add-to-cart-sauce-labs-backpack")}
+    get btnFilter() {return $(`select[data-test="product-sort-container"]`)}
+    get btnZtoA() {return this.btnFilter.$(`[value="za"]`)}
+    get btnLohi() {return this.btnFilter.$(`[value="lohi"]`)}
+    get btnHilo() {return this.btnFilter.$(`[value="hilo"]`)}
     get badge() {return $(`span[data-test="shopping-cart-badge"]`)}
     get btnCart() {return $(`a[data-test="shopping-cart-link"]`)}
     get btnRemoveCart() {return $("button#remove")}
@@ -43,8 +47,39 @@ class InventoryPage {
         await browser.switchWindow("https://www.linkedin.com/company/sauce-labs")
     }
 
-    filterAtoZ = async () => {
-        // 
+    changeFilterZtoA = async () => {
+        await this.btnFilter.click()
+        await this.btnZtoA.click()
+    }
+
+    changeFilterLohi = async () => {
+        await this.btnFilter.click()
+        await this.btnLohi.click()
+    }
+
+    changeFilterHilo = async () => {
+        await this.btnFilter.click()
+        await this.btnHilo.click()
+    }
+
+    getAllNameProduct = async () => {
+        const allNameProduct = []
+
+        for(const productName of this.allProductElementName){
+            const nameProduct = await productName.getText()
+            allNameProduct.push(nameProduct)
+        }
+        return allNameProduct
+    }
+
+    getAllPriceProduct = async () => {
+        const allPriceProduct = []
+
+        for(const priceProduct of this.allPriceElementPrice){
+            const productPrice = await priceProduct.getText()
+            allPriceProduct.push(productPrice)
+        }
+        return allPriceProduct
     }
 
     cekMenuAllItems = async () => {

@@ -1,3 +1,4 @@
+
 function isAscending(data) {
     for (let i = 0; i < data; i++) {
         if (data[i + 1] <= data[i]) {
@@ -16,4 +17,4 @@ function isDescending(data) {
     return true;
 }
 
-export { isAscending, isDescending};
+export {isAscending, isDescending};
